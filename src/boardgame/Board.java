@@ -35,5 +35,8 @@ public class Board { // return one piece at time
 		return pieces[position.getRow()][position.getColumn()];
 	}
 	
-	
+	public void placePiece(Piece piece, Position position) { // method that passes the position to the part
+		pieces [position.getRow()][position.getColumn()] = piece;
+		piece.position = position; // receives the position
+	}
 }
