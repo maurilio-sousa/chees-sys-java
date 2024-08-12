@@ -8,11 +8,23 @@ import chess.pieces.King;
 import chess.pieces.Rook;
 
 public class ChessMatch { // hearth of my system chess
+	private int turn;
+	private Color currentPlayer;
 	private Board board;
 	
 	public ChessMatch() { // method for initial board and show pieces on my board
 		board = new Board(8,8); // dimension board
+		turn = 1;
+		currentPlayer = Color.WHITE; // chess the white pieces start
 		initialSetup(); 
+	}
+	
+	public int getTurn() {
+		return turn;
+	}
+	
+	public Color getCurrentPlayer() {
+		return currentPlayer;
 	}
 	
 	public ChessPiece[][] getPieces(){ // return one matrix of chess pieces for this match
@@ -38,6 +50,7 @@ public class ChessMatch { // hearth of my system chess
 		validateSourcePosition(source);
 		validateTargetPosition(source,target);
 		Piece capturePiece = makeMove(source, target);
+		nextTurn();
 		return (ChessPiece)capturePiece;
 	}
 	
@@ -52,6 +65,8 @@ public class ChessMatch { // hearth of my system chess
 		if(!board.thereIsAPiece(position)) {
 			throw new ChessException("There is no piece on source position");
 		}
+		if(currentPlayer != ((ChessPiece)board.piece(position)).getColor()) // down casting | if this color != current color. piece enemy
+			throw new ChessException("The chosen piece is not yours");
 		if(!board.piece(position).isThereAnyPossibleMove()) {
 			throw new ChessException("There is no possible moves for the chosen piece");
 		}
@@ -61,6 +76,11 @@ public class ChessMatch { // hearth of my system chess
 		if(!board.piece(source).possibleMove(target)) {
 			throw new ChessException("The chosen piece can't move to target position");
 		}
+	}
+	
+	private void nextTurn() {
+		turn++;
+		currentPlayer = (currentPlayer == Color.BLACK) ? Color.WHITE : Color.BLACK; // Change players in turns
 	}
 	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {

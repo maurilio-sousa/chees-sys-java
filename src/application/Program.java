@@ -19,7 +19,7 @@ public class Program {
 			try {
 				UI.clearScreen();
 				
-				UI.printBoard(chessMatch.getPieces());
+				UI.printMatch(chessMatch);
 				System.out.println();
 				System.out.print("Sourse: ");
 				ChessPosition source = UI.readChessPosition(sc);
@@ -43,7 +43,8 @@ public class Program {
 			}
 			UI.clearScreen();
 			
-			UI.printBoard(chessMatch.getPieces());
+			/*
+			UI.printMatch(chessMatch);
 			System.out.println();
 			System.out.print("Sourse: ");
 			ChessPosition source = UI.readChessPosition(sc);
@@ -55,7 +56,7 @@ public class Program {
 			System.out.print("Target: ");
 			ChessPosition target = UI.readChessPosition(sc);
 			
-			ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
+			ChessPiece capturedPiece = chessMatch.performChessMove(source, target);*/
 		}
 		
 		
