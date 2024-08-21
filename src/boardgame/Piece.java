@@ -6,7 +6,7 @@ public abstract class Piece {
 	
 	public Piece(Board board) {
 		this.board = board;
-		this.position = null; // position in game inicillazine null
+		position = null; // position in game inicillazine null
 	}
 
 	protected Board getBoard() { // this method accessible only classes the same packge ou subclass
